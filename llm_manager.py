@@ -31,6 +31,22 @@ try:
 except ImportError:
     pass  # Rely on shell environment if python-dotenv is missing
 
+# ---------------------------------------------------------------------------
+# Streamlit Cloud secrets fallback
+# On Streamlit Cloud, API keys are stored in st.secrets (not .env).
+# We inject them into os.environ so the rest of this module works unchanged.
+# ---------------------------------------------------------------------------
+try:
+    import streamlit as _st  # type: ignore
+    _secrets = _st.secrets
+    for _key in ("GEMINI_API_KEY", "GROQ_API_KEY"):
+        if _key not in os.environ or not os.environ[_key].strip():
+            _val = _secrets.get(_key, "")
+            if _val:
+                os.environ[_key] = _val
+except Exception:  # noqa: BLE001
+    pass  # Not running inside Streamlit — ignore
+
 logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------

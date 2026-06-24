@@ -32,7 +32,7 @@ Safety Disclaimer:
 # Safety Disclaimer (appended to every advisory and chatbot response)
 # ---------------------------------------------------------------------------
 SAFETY_DISCLAIMER = (
-    "⚠️ Consult local agricultural experts before applying chemicals or "
+    " Consult local agricultural experts before applying chemicals or "
     "changing farming practices."
 )
 
@@ -550,19 +550,19 @@ _CHATBOT_KB = {
 _GENERAL_KB = {
     "sustainable": (
         "Sustainable farming practices for tomatoes include:\n\n"
-        "🌱 **Soil Health**\n"
+        " **Soil Health**\n"
         "• Add organic compost to improve soil structure and microbial life.\n"
         "• Use cover crops between seasons to fix nitrogen and prevent erosion.\n"
         "• Minimise tillage to protect soil structure.\n\n"
-        "💧 **Water Management**\n"
+        " **Water Management**\n"
         "• Use drip irrigation to reduce water use and keep leaves dry.\n"
         "• Collect and use rainwater where possible.\n"
         "• Mulch around plants to retain soil moisture.\n\n"
-        "🐛 **Integrated Pest Management (IPM)**\n"
+        " **Integrated Pest Management (IPM)**\n"
         "• Monitor weekly rather than spraying on a fixed schedule.\n"
         "• Encourage beneficial insects with flowering border plants.\n"
         "• Use chemical sprays only when pest thresholds are exceeded.\n\n"
-        "♻️ **Resource Efficiency**\n"
+        " **Resource Efficiency**\n"
         "• Rotate crops every 2–3 seasons to break disease and pest cycles.\n"
         "• Use certified seeds to reduce disease pressure from the start.\n"
         "• Record yield and input data each season to optimise future decisions."
@@ -633,7 +633,7 @@ _GENERAL_KB = {
         "• Keep a simple field map to track what was grown where each season."
     ),
     "hello": (
-        "Hello! I'm AgriGuard AI — your intelligent agriculture advisor. 🌱\n\n"
+        "Hello! I'm AgriGuard AI — your intelligent agriculture advisor. \n\n"
         "You can ask me about:\n"
         "• **Disease management** — prevention, treatment, fungicides\n"
         "• **Sustainable farming** — eco-friendly practices and IPM\n"

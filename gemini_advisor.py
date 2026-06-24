@@ -65,10 +65,10 @@ def get_gemini_status() -> str:
     """
     provider = get_current_provider()
     if provider == PROVIDER_GEMINI:
-        return "🟢 Gemini 2.5 Flash Connected"
+        return " Gemini 2.5 Flash Connected"
     if provider == PROVIDER_GROQ:
-        return "🟡 Groq Llama 3.3 70B Active (Gemini fallback)"
-    return "🔴 Using Local Knowledge Base (no cloud provider available)"
+        return " Groq Llama 3.3 70B Active (Gemini fallback)"
+    return " Using Local Knowledge Base (no cloud provider available)"
 
 
 # ---------------------------------------------------------------------------
@@ -112,7 +112,7 @@ Use the exact headings shown. Keep language practical and easy for farmers to un
    Describe season-over-season strategies to protect the crop in future.
 
 End your response with this exact line:
-⚠️ Consult local agricultural experts before applying chemicals or changing farming practices.
+ Consult local agricultural experts before applying chemicals or changing farming practices.
 """
 
 # ---------------------------------------------------------------------------
@@ -126,7 +126,7 @@ _CHAT_SYSTEM = (
     "When asked general questions (who are you, capital cities, weather, etc.) answer them "
     "directly and naturally. "
     "For responses that involve chemicals or farming practice changes, always end with:\n"
-    "⚠️ Consult local agricultural experts before applying chemicals or changing farming practices."
+    " Consult local agricultural experts before applying chemicals or changing farming practices."
 )
 
 

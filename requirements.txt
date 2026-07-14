@@ -8,3 +8,7 @@ reportlab
 google-genai>=1.0.0
 groq>=0.9.0
 python-dotenv>=1.0.0
+mysql-connector-python>=8.0.0
+fastapi
+uvicorn
+opencv-python-headless

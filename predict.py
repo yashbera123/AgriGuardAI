@@ -1,10 +1,15 @@
-import tensorflow as tf
 import numpy as np
+import tensorflow as tf
 from tensorflow.keras.preprocessing import image
 
-MODEL_PATH = "model/tomato_disease_model.keras"
+from config import MODEL_PATH
 
-model = tf.keras.models.load_model(MODEL_PATH)
+try:
+    model = tf.keras.models.load_model(MODEL_PATH)
+except Exception as e:
+    from utils.exceptions import PredictionError
+
+    raise PredictionError(f"Failed to load model: {e}")
 
 class_names = [
     "Tomato_Bacterial_spot",
@@ -16,26 +21,28 @@ class_names = [
     "Tomato_Target_Spot",
     "Tomato_Tomato_YellowLeaf_Curl_Virus",
     "Tomato_Tomato_mosaic_virus",
-    "Tomato_healthy"
+    "Tomato_healthy",
 ]
+
+from utils.logger_config import get_logger
+
+logger = get_logger(__name__)
 
 img_path = input("Enter image path: ")
 
-img = image.load_img(
-    img_path,
-    target_size=(224, 224)
-)
+try:
+    img = image.load_img(img_path, target_size=(224, 224))
+    img_array = image.img_to_array(img)
+    img_array = np.expand_dims(img_array, axis=0)
 
-img_array = image.img_to_array(img)
-img_array = np.expand_dims(img_array, axis=0)
+    prediction = model.predict(img_array)
+except Exception as e:
+    from utils.exceptions import PredictionError
 
-prediction = model.predict(img_array)
+    raise PredictionError(f"Prediction failed: {e}")
 
 predicted_class = class_names[np.argmax(prediction)]
 confidence = np.max(prediction) * 100
 
-print("\nPrediction:")
-print(predicted_class)
-
-print("\nConfidence:")
-print(f"{confidence:.2f}%")
+logger.info(f"Prediction: {predicted_class}")
+logger.info(f"Confidence: {confidence:.2f}%")

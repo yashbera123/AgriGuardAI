@@ -1,449 +1,161 @@
-# 🌿 AgriGuard AI
-### AI-Powered Sustainable Crop Disease Detection & Decision Support System
+# AgriGuardAI - AI Powered Sustainable Crop Disease Detection and Decision Support System
 
-AgriGuard AI is an intelligent crop disease diagnosis platform that combines **Deep Learning**, **Explainable AI**, **Large Language Models (LLMs)**, and **Sustainable Agriculture** to assist farmers in identifying tomato leaf diseases and receiving actionable treatment recommendations.
+<div align="center">
+  <img src="assets/leaf.jpg" alt="AgriGuardAI Banner" width="800"/>
 
-The system utilizes a **MobileNetV2 Convolutional Neural Network** for disease classification, integrates **Google Gemini 2.5 Flash** for intelligent agricultural advice, provides **Groq Llama 3.3** as an automatic fallback, and includes a **local knowledge base** to ensure uninterrupted operation even without cloud AI services.
+  [![Python](https://img.shields.io/badge/Python-3.11-blue.svg)](https://python.org)
+  [![FastAPI](https://img.shields.io/badge/FastAPI-0.109.2-009688.svg?logo=fastapi)](https://fastapi.tiangolo.com)
+  [![Streamlit](https://img.shields.io/badge/Streamlit-1.31.1-FF4B4B.svg?logo=streamlit)](https://streamlit.io)
+  [![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED.svg?logo=docker)](https://www.docker.com/)
+  [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.15.0-FF6F00.svg?logo=tensorflow)](https://tensorflow.org)
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+</div>
 
----
+## 📌 Project Overview
+**AgriGuardAI** is an intelligent, scalable, and cloud-ready decision support system designed for modern agriculture. It leverages Deep Learning to accurately identify plant diseases from images and uses advanced Generative AI (LLMs) to provide actionable treatment plans, crop rotation advice, and personalized farming insights. 
 
-# 📌 Table of Contents
+The project aims to empower farmers and agronomists with a reliable, instant AI assistant that operates robustly on the cloud through a Dockerized architecture.
 
-- Project Overview
-- Features
-- System Architecture
-- Technology Stack
-- Project Structure
-- Workflow
-- Disease Classes
-- Explainable AI
-- Analytics Dashboard
-- AI Advisor
-- Chatbot
-- PDF Report Generation
-- Installation
-- Running the Project
-- Screenshots
-- Future Scope
-- Contributors
-- License
+## 🚀 Motivation
+Crop diseases lead to substantial yield losses globally, threatening food security and farmers' livelihoods. Early detection often requires domain expertise which is scarce in remote areas. AgriGuardAI bridges this gap by providing an expert AI system directly to the user's device, combining the visual precision of Convolutional Neural Networks (CNNs) with the reasoning capabilities of Large Language Models (LLMs).
 
----
+## ✨ Key Features
+- **Tomato Disease Detection**: Highly accurate classification using a customized MobileNetV2 architecture.
+- **Explainable AI (XAI)**: Generates Grad-CAM heatmaps so users can visualize exactly which parts of the leaf influenced the AI's prediction.
+- **AI Advisor & Chatbot**: Interactive LLM integration (Gemini / Groq) for real-time agricultural advice and fallback mechanisms.
+- **PDF Report Generation**: One-click downloadable diagnostic reports.
+- **Analytics Dashboard**: View historical predictions and statistical insights.
+- **REST API**: Fully decoupled backend using FastAPI, allowing integration with mobile or third-party apps.
+- **Data Persistence**: MySQL database integration for tracking predictions securely.
+- **Dockerized Architecture**: One-command setup using Docker and Docker Compose.
 
-# 🌱 Project Overview
+## 🛠 Technology Stack
+| Category | Technologies |
+|---|---|
+| **Frontend** | Streamlit, Plotly, Pillow |
+| **Backend** | FastAPI, Uvicorn, Python 3.11 |
+| **Machine Learning** | TensorFlow, Keras (MobileNetV2), NumPy, Pandas, OpenCV (Headless) |
+| **Database** | MySQL |
+| **AI Integration** | Google Gemini (Primary), Groq Llama 3 (Fallback) |
+| **DevOps & Deployment** | Docker, Docker Compose |
 
-Crop diseases significantly reduce agricultural productivity and often require expert diagnosis, which may not be readily available to every farmer.
-
-AgriGuard AI addresses this challenge by providing an AI-powered diagnosis platform capable of:
-
-- Detecting tomato leaf diseases
-- Explaining predictions using Explainable AI
-- Providing treatment recommendations
-- Suggesting sustainable farming practices
-- Answering farmer questions using AI
-- Maintaining prediction history
-- Generating professional PDF reports
-
-The project was developed as a Final Year Major Project focusing on Sustainable Agriculture and Artificial Intelligence.
-
----
-
-# 🚀 Features
-
-## 🌿 Disease Detection
-
-- MobileNetV2 CNN-based classifier
-- 10 tomato leaf disease classes
-- Confidence score for every prediction
-- Top-5 prediction probabilities
-
----
-
-## 📸 Image Validation
-
-Before prediction the application verifies:
-
-- Image quality
-- Brightness
-- Blur detection
-- Tomato leaf validation
-
-Invalid or unrelated images are rejected before reaching the model.
-
----
-
-## 🧠 Explainable AI
-
-The system supports Explainable AI through:
-
-- Grad-CAM visualization
-- Confidence comparison
-- Probability distribution
-- Top-5 prediction analysis
-
-This helps users understand why the model predicted a particular disease.
-
----
-
-## 🤖 AI Agronomist
-
-AgriGuard AI generates intelligent recommendations using:
-
-### Primary
-
-Google Gemini 2.5 Flash
-
-### Automatic Fallback
-
-Groq Llama 3.3 70B
-
-### Offline Fallback
-
-Local Agricultural Knowledge Base
-
-The AI provides:
-
-- Disease explanation
-- Prevention methods
-- Treatment strategy
-- Sustainable farming advice
-- Long-term recommendations
-
----
-
-## 💬 AI Farming Assistant
-
-Interactive chatbot capable of answering questions related to:
-
-- Disease prevention
-- Crop protection
-- Fungicides
-- Sustainable farming
-- Tomato cultivation
-
-The chatbot automatically switches between:
-
-Gemini → Groq → Local Knowledge Base
-
----
-
-## 📊 Analytics Dashboard
-
-The application records previous predictions and provides analytics including:
-
-- Total predictions
-- Most common disease
-- Average confidence
-- Average sustainability score
-- Disease distribution
-- Disease frequency
-- Prediction history
-
----
-
-## 📄 PDF Report Generation
-
-Generate downloadable reports containing:
-
-- Disease diagnosis
-- Confidence score
-- Cause
-- Symptoms
-- Medication
-- Treatment plan
-- Prevention tips
-- Sustainability advice
-- AI-generated recommendations
-- Report ID
-- Timestamp
-
----
-
-# 🏗 System Architecture
-
-```
-                   User
-                     │
-                     ▼
-            Streamlit Web Application
-                     │
-                     ▼
-           Image Upload / Camera Capture
-                     │
-                     ▼
-            Image Quality Validation
-                     │
-                     ▼
-         Tomato Leaf Verification
-                     │
-                     ▼
-         MobileNetV2 Disease Prediction
-                     │
-         ┌───────────┴────────────┐
-         ▼                        ▼
-   Grad-CAM Analysis      Probability Analysis
-         │                        │
-         └───────────┬────────────┘
-                     ▼
-          Disease Knowledge Base
-                     │
-                     ▼
-              AI Agronomist
-       Gemini → Groq → Local
-                     │
-                     ▼
-      PDF Report + Analytics Dashboard
-                     │
-                     ▼
-          AI Farming Assistant
+## 🏗 Architecture Diagram
+```mermaid
+graph TD
+    Client[Web Browser / User] -->|HTTP| Streamlit(Streamlit UI - 8501)
+    Streamlit <-->|REST API| FastAPI(FastAPI Backend - 8000)
+    FastAPI -->|Queries| MySQL[(MySQL Database)]
+    FastAPI -->|Inference| TF[TensorFlow Model]
+    FastAPI <-->|API Calls| Gemini[Google Gemini API]
+    FastAPI <-->|API Calls| Groq[Groq Llama 3 API]
 ```
 
----
-
-# 🛠 Technology Stack
-
-## Machine Learning
-
-- TensorFlow
-- Keras
-- MobileNetV2
-- NumPy
-- Pandas
-
----
-
-## Explainable AI
-
-- Grad-CAM
-
----
-
-## AI Models
-
-- Google Gemini 2.5 Flash
-- Groq Llama 3.3 70B
-- Local Knowledge Base
-
----
-
-## Frontend
-
-- Streamlit
-- HTML
-- CSS
-- Custom Glassmorphism UI
-
----
-
-## Backend
-
-- Python
-
----
-
-## Visualization
-
-- Matplotlib
-- Streamlit Charts
-
----
-
-## Report Generation
-
-- ReportLab
-
----
-
-## Image Processing
-
-- Pillow
-- OpenCV
-
----
-
-# 📂 Project Structure
-
+## 📁 Project Folder Structure
 ```
 AgriGuardAI/
-
-│── app.py
-│── analytics.py
-│── crop_knowledge.py
-│── disease_info.py
-│── recommendations.py
-│── predict.py
-│── gradcam.py
-│── leaf_validator.py
-│── gemini_advisor.py
-│── llm_manager.py
-│── pdf_generator.py
-│── prediction_logger.py
-│── train.py
-│── requirements.txt
-│
-├── model/
-├── dataset/
-├── data/
-├── screenshots/
-├── .streamlit/
+├── api/                  # FastAPI Application
+│   ├── routers/          # API Route Definitions
+│   ├── schemas/          # Pydantic Models for Validation
+│   └── main.py           # FastAPI Entry Point
+├── assets/               # Static Files & Screenshots
+├── database/             # Database Connection & Repositories
+├── model/                # Pre-trained ML Models (.keras)
+├── models/               # Domain Models
+├── reports/              # Generated PDF Reports output directory
+├── services/             # Core Business Logic & AI Integrations
+├── streamlit/            # Streamlit Frontend UI Application
+├── tests/                # Pytest Test Suite
+├── utils/                # Helper Scripts (GradCAM, PDF generation, etc.)
+├── .env.example          # Example Environment Variables
+├── docker-compose.yml    # Docker Compose Configuration
+├── Dockerfile            # Multi-stage Docker Image build instructions
+├── requirements.txt      # Python Dependencies
+└── README.md             # Project Documentation
 ```
 
----
+## 🧠 Machine Learning Pipeline
+1. **Input Validation**: Images are pre-processed to detect whether they contain a leaf using rule-based validation.
+2. **Inference**: A MobileNetV2 CNN (fine-tuned on plant disease datasets) runs inference to classify the disease.
+3. **Grad-CAM**: The gradient signals are propagated backward to the last convolutional layer to highlight the "diseased" regions, ensuring the AI's decision is interpretable.
 
-# 🔬 Disease Classes
+## 📡 REST API Documentation
+The backend exposes a fully documented RESTful API. Once running, you can access the interactive Swagger UI at:
+👉 `http://localhost:8000/docs`
 
-The model can detect:
+**Core Endpoints:**
+- `GET /health` : System health status (DB + AI connection checks)
+- `POST /predict/` : Submit an image for disease classification.
+- `GET /history/` : Retrieve past diagnostic records.
+- `POST /advisor/chat/` : Send a message to the AI chatbot.
 
-- Tomato Healthy
-- Bacterial Spot
-- Early Blight
-- Late Blight
-- Leaf Mold
-- Septoria Leaf Spot
-- Spider Mites
-- Target Spot
-- Tomato Mosaic Virus
-- Yellow Leaf Curl Virus
+## 🐳 Docker Architecture
+The application uses Docker Compose to orchestrate three core services on a unified custom bridge network (`agriguard_net`):
+1. **`mysql`**: A persistent MySQL 8 database container.
+2. **`api`**: The FastAPI application handling all backend processing.
+3. **`streamlit`**: The user-facing web interface.
 
----
+Environment variables and secrets are passed securely using a `.env` file without being hardcoded into the images.
 
-# 🔄 Workflow
+## ⚙️ Installation Instructions
 
-```
-Upload Image
-      │
-      ▼
-Image Validation
-      │
-      ▼
-Tomato Leaf Verification
-      │
-      ▼
-MobileNetV2 Prediction
-      │
-      ▼
-Grad-CAM Visualization
-      │
-      ▼
-Knowledge Base
-      │
-      ▼
-Gemini / Groq AI Advisor
-      │
-      ▼
-Analytics Dashboard
-      │
-      ▼
-PDF Report
-      │
-      ▼
-AI Chatbot
-```
+### Option 1: Installation with Docker (Recommended)
+You only need Docker and Docker Compose installed.
 
----
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yashbera123/AgriGuardAI.git
+   cd AgriGuardAI
+   ```
+2. Configure environment variables:
+   ```bash
+   cp .env.example .env
+   # Edit .env with your database credentials and API keys
+   ```
+3. Start the application:
+   ```bash
+   docker compose up -d --build
+   ```
+4. Access the apps:
+   - **Streamlit**: `http://localhost:8501`
+   - **FastAPI Docs**: `http://localhost:8000/docs`
 
-# 📸 Screenshots
+### Option 2: Installation without Docker (Local Setup)
+Ensure you have Python 3.11+ and MySQL installed.
 
-Include screenshots of:
+1. Clone the repository and navigate into it.
+2. Create and activate a virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Set up the database:
+   - Create a MySQL database named `agriguard`.
+   - Update `.env` with your local MySQL credentials (`DB_HOST=localhost`).
+5. Run the FastAPI server:
+   ```bash
+   uvicorn api.main:app --reload --host 0.0.0.0 --port 8000
+   ```
+6. Open a new terminal and run the Streamlit app:
+   ```bash
+   PYTHONPATH=. streamlit run streamlit/app.py
+   ```
 
-- Home Page
-- Upload Page
-- Disease Prediction
-- Grad-CAM Visualization
-- AI Advisor
-- Analytics Dashboard
-- Chatbot
-- PDF Report
+## 📸 Screenshots
+*(Coming soon)*
 
----
+## 🔮 Future Improvements
+- Migration to a cloud database (AWS RDS / Supabase).
+- CI/CD Pipelines with GitHub Actions for automated testing and Docker image pushes.
+- Support for multiple languages (localization) in the AI advisor.
+- Adding real-time weather integration for holistic farming advice.
 
-# ⚙ Installation
+## 👨‍💻 Developer
+Developed as a comprehensive final-year AI and Full Stack Engineering project.
+If you find this project helpful, consider leaving a ⭐ on the repository!
 
-Clone the repository
-
-```bash
-git clone https://github.com/yourusername/AgriGuardAI.git
-```
-
-Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-Create a `.env` file
-
-```
-GEMINI_API_KEY=YOUR_API_KEY
-GROQ_API_KEY=YOUR_API_KEY
-```
-
-Run the application
-
-```bash
-streamlit run app.py
-```
-
----
-
-# 📈 Model Information
-
-Model
-
-- MobileNetV2
-
-Input Size
-
-- 224 × 224
-
-Output Classes
-
-- 10
-
-Framework
-
-- TensorFlow
-
----
-
-# 🌍 Applications
-
-- Smart Agriculture
-- Precision Farming
-- Crop Disease Detection
-- Farmer Assistance
-- Sustainable Agriculture
-- AI-based Advisory Systems
-- Agricultural Research
-
----
-
-# 🚀 Future Scope
-
-Future enhancements include:
-
-- Multi-crop disease detection
-- Cloud deployment on Microsoft Azure
-- Real-time weather integration
-- IoT sensor integration
-- Mobile application
-- Multi-language farmer support
-- AI-powered disease progression prediction
-- Farm management dashboard
-- Satellite image analysis
-
----
-
-# 👨‍💻 Developer
-
-**Yashwant**
-
-Final Year B.Tech Computer Science Engineering
-
-AI • Machine Learning • Data Analytics • Cloud Computing
-
----
-
-# 📜 License
-
-This project is developed for educational and research purposes.
+## 📄 License
+This project is licensed under the MIT License. See the LICENSE file for details.

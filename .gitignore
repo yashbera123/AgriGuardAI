@@ -1,9 +1,48 @@
-.env
+# Python
 __pycache__/
-*.pyc
-.venv/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
 venv/
-.streamlit/secrets.toml
-dataset/
+
+# Environment Variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs and databases
+*.log
+logs/
+mysql_data/
+
+# Application Specific
+reports/
 screenshots/
-leaf.jpg
+model/*.keras
+!model/tomato_disease_model.keras
+
+# Docker
+.dockerignore

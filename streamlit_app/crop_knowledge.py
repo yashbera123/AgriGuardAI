@@ -1,5 +1,7 @@
 """Crop configuration and tomato disease knowledge for AgriGuard AI."""
 
+from config import MODEL_PATH
+
 # Active crop keeps the current tomato model as the default while making it easy
 # to add more crop entries later.
 ACTIVE_CROP = "tomato"
@@ -47,7 +49,7 @@ CROP_CONFIGS = {
     "tomato": {
         "crop_name": "Tomato",
         "model_name": "MobileNetV2",
-        "model_path": "model/tomato_disease_model.keras",
+        "model_path": MODEL_PATH,
         "image_size": (224, 224),
         "class_names": TOMATO_CLASS_NAMES,
         "display_names": TOMATO_DISPLAY_NAMES,

@@ -47,7 +47,7 @@ services:
   streamlit:
     build: .
     container_name: agriguard-streamlit
-    command: streamlit run streamlit/app.py --server.port=8501 --server.address=0.0.0.0
+    command: streamlit run streamlit_app/app.py --server.port=8501 --server.address=0.0.0.0
     restart: always
     ports:
       - "8501:8501"

@@ -5,8 +5,8 @@ from fastapi import APIRouter, File, HTTPException, UploadFile, status
 
 from api.schemas.prediction import PredictionResponse
 from services.prediction_service import PredictionService
-from streamlit.crop_knowledge import ACTIVE_CROP, get_crop_config
-from streamlit.recommendations import recommendations
+from streamlit_app.crop_knowledge import ACTIVE_CROP, get_crop_config
+from streamlit_app.recommendations import recommendations
 from utils.exceptions import PredictionError, ValidationError
 from utils.logger_config import get_logger
 
